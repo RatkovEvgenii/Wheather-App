@@ -9,12 +9,15 @@ import UIKit
 
 class AllCitiesController: UITableViewController {
    
+    
     var cities = [
-            "Moscow",
-            "Krasnoyarsk",
-            "London",
-            "Paris"
+        (title: "Moscow", emblem: UIImage(named: "moscow")),
+        (title: "Krasnoyarsk", emblem: UIImage(named: "кrasnoyarsk")),
+        (title: "London", emblem: UIImage(named: "london")),
+        (title: "Paris", emblem: UIImage(named: "paris")),
+        (title: "Sofia", emblem: UIImage(named: "sofia"))
         ]
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +45,12 @@ class AllCitiesController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Получаем ячейку из пула
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! AllCitiesCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! CustomCityViewCell
         // Получаем город для конкретной строки
         let city = cities[indexPath.row]
         
         // Устанавливаем город в надпись ячейки
-        cell.cityName.text = city
-        
+        cell.configure(city: city.title, emblem: city.emblem!)
         return cell
     }
     
